@@ -297,5 +297,156 @@
     document.getElementById('year').textContent = new Date().getFullYear();
     render();
   </script>
+
+  <!-- AnubhiCreation Chatbot -->
+<div class="chatbot">
+  <button class="chatbot-button" id="chatbotButton" aria-label="Open chat">
+    💬
+  </button>
+
+  <div class="chatbot-window" id="chatbotWindow">
+    <div class="chatbot-header">
+      <div>
+        <strong>AnubhiCreation Assistant</strong>
+        <small>Ask me about the art 🎨</small>
+      </div>
+      <button id="chatbotClose" aria-label="Close chat">×</button>
+    </div>
+
+    <div class="chatbot-messages" id="chatbotMessages">
+      <div class="bot-message">
+        Hi! 👋 Welcome to AnubhiCreation World.
+        <br><br>
+        I can tell you about Anubhi's paintings, sketches,
+        artwork and how to contact her. 🎨
+      </div>
+    </div>
+
+    <div class="chatbot-input">
+      <input
+        type="text"
+        id="chatbotInput"
+        placeholder="Ask something..."
+        autocomplete="off"
+      />
+      <button id="chatbotSend">➤</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const chatbotButton = document.getElementById("chatbotButton");
+  const chatbotWindow = document.getElementById("chatbotWindow");
+  const chatbotClose = document.getElementById("chatbotClose");
+  const chatbotInput = document.getElementById("chatbotInput");
+  const chatbotSend = document.getElementById("chatbotSend");
+  const chatbotMessages = document.getElementById("chatbotMessages");
+
+  chatbotButton.addEventListener("click", () => {
+    chatbotWindow.classList.add("open");
+    chatbotInput.focus();
+  });
+
+  chatbotClose.addEventListener("click", () => {
+    chatbotWindow.classList.remove("open");
+  });
+
+  function addMessage(message, type) {
+    const div = document.createElement("div");
+    div.className = type + "-message";
+    div.textContent = message;
+    chatbotMessages.appendChild(div);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  }
+
+  function getBotResponse(message) {
+    const text = message.toLowerCase();
+
+    if (
+      text.includes("hello") ||
+      text.includes("hi") ||
+      text.includes("hey")
+    ) {
+      return "Hi! 👋 Welcome to AnubhiCreation World. How can I help you?";
+    }
+
+    if (
+      text.includes("who is anubhi") ||
+      text.includes("about anubhi") ||
+      text.includes("about the artist")
+    ) {
+      return "Anubhi is the artist behind AnubhiCreation World. She creates paintings, graphite sketches, colorful artwork and handmade creations.";
+    }
+
+    if (
+      text.includes("painting") ||
+      text.includes("paintings")
+    ) {
+      return "You can explore Anubhi's paintings in the Gallery section. 🎨 The collection includes colorful portraits, landscapes and devotional artwork.";
+    }
+
+    if (
+      text.includes("sketch") ||
+      text.includes("sketches")
+    ) {
+      return "Anubhi also creates graphite portrait sketches and detailed pencil artwork. ✏️ You can find them in the Sketches section of the gallery.";
+    }
+
+    if (
+      text.includes("instagram") ||
+      text.includes("social media")
+    ) {
+      return "You can follow Anubhi on Instagram here: instagram.com/anubhicreation_world 📸";
+    }
+
+    if (
+      text.includes("email") ||
+      text.includes("contact") ||
+      text.includes("reach")
+    ) {
+      return "You can contact Anubhi at anubhicreation@gmail.com 📧";
+    }
+
+    if (
+      text.includes("buy") ||
+      text.includes("purchase") ||
+      text.includes("commission") ||
+      text.includes("custom")
+    ) {
+      return "For artwork purchases or custom artwork enquiries, please contact Anubhi at anubhicreation@gmail.com or through Instagram.";
+    }
+
+    if (
+      text.includes("thank") ||
+      text.includes("thanks")
+    ) {
+      return "You're very welcome! ❤️ Thank you for visiting AnubhiCreation World.";
+    }
+
+    return "I'm still learning about Anubhi's creative world. 🎨 You can ask me about her paintings, sketches, artwork, Instagram or how to contact her.";
+  }
+
+  function sendMessage() {
+    const message = chatbotInput.value.trim();
+
+    if (!message) return;
+
+    addMessage(message, "user");
+    chatbotInput.value = "";
+
+    setTimeout(() => {
+      const response = getBotResponse(message);
+      addMessage(response, "bot");
+    }, 400);
+  }
+
+  chatbotSend.addEventListener("click", sendMessage);
+
+  chatbotInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      sendMessage();
+    }
+  });
+</script>
 </body>
 </html>
