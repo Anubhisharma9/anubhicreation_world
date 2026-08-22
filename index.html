@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AnubhiCreation World — a personal art gallery by Anubhi.">
+  <title>AnubhiCreation World | Art & Creativity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home">Anubhi<span>Creation</span> World</a>
+    <button class="menu-toggle" aria-label="Open menu">☰</button>
+    <nav class="nav">
+      <a href="#home">Home</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">ART • SKETCHES • HANDMADE CREATIONS</p>
+        <h1>Where imagination<br><em>becomes art.</em></h1>
+        <p class="hero-text">
+          Welcome to my little world of colors, portraits, landscapes and handmade creations.
+          Every piece is made with curiosity, patience and a love for creating.
+        </p>
+        <a class="button" href="#gallery">Explore the gallery <span>↗</span></a>
+      </div>
+      <div class="hero-art">
+        <div class="hero-frame">
+          <img src="assets/art/art-01.jpeg" alt="Painted stone landscape by Anubhi">
+        </div>
+        <span class="floating-note">Made by Anubhi · 01</span>
+      </div>
+    </section>
+
+    <section class="intro-strip">
+      <p>“Art is not just what I create — it is how I see the world.”</p>
+    </section>
+
+    <section id="gallery" class="gallery-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">THE COLLECTION</p>
+          <h2>My creative world</h2>
+        </div>
+        <p class="section-description">A growing collection of paintings, sketches and handmade pieces.</p>
+      </div>
+
+      <div class="filters" role="tablist" aria-label="Filter artwork">
+        <button class="filter active" data-filter="All">All</button>
+        <button class="filter" data-filter="Paintings">Paintings</button>
+        <button class="filter" data-filter="Sketches">Sketches</button>
+        <button class="filter" data-filter="Crafts">Crafts</button>
+      </div>
+
+      <div id="gallery-grid" class="gallery-grid"></div>
+    </section>
+
+    <section id="about" class="about-section">
+      <div class="about-image">
+        <img src="assets/profile/anubhi.jpeg" alt="Anubhi">
+      </div>
+      <div class="about-copy">
+        <p class="eyebrow">ABOUT THE ARTIST</p>
+        <h2>Hi, I'm Anubhi.</h2>
+        <p>
+          AnubhiCreation World is my personal space for sharing the things I love to make.
+          From graphite portraits to colorful paintings and tiny hand-painted objects,
+          I enjoy experimenting with different subjects, textures and moods.
+        </p>
+        <p>
+          This gallery will keep growing as I create more. Thank you for stopping by
+          and spending a little time in my creative world.
+        </p>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+      <p class="eyebrow">STAY CONNECTED</p>
+      <h2>More creations are on the way.</h2>
+      <p>Follow along as the collection grows.</p>
+      <div class="contact-links">
+        <a href="https://www.instagram.com/anubhicreation_world" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+        <a href="mailto:anubhicreation@gmail.com">Email ↗</a>
+      </div>
+      <p class="small-note">Follow my creative work on Instagram or get in touch by email.</p>
+    </section>
+  </main>
+
+  <footer>
+    <span>© <span id="year"></span> AnubhiCreation World</span>
+    <span>Made with creativity ♡</span>
+  </footer>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button class="lightbox-close" aria-label="Close artwork">×</button>
+    <button class="lightbox-prev" aria-label="Previous artwork">‹</button>
+    <div class="lightbox-content">
+      <img id="lightbox-image" src="" alt="">
+      <div>
+        <p id="lightbox-category" class="eyebrow"></p>
+        <h3 id="lightbox-title"></h3>
+        <p id="lightbox-description"></p>
+      </div>
+    </div>
+    <button class="lightbox-next" aria-label="Next artwork">›</button>
+  </div>
+
+  <script>
+    const artworks = [
+  {
+    "title": "Painted Stone",
+    "category": "Paintings",
+    "description": "A miniature landscape painted on stone.",
+    "image": "assets/art/art-01.jpeg"
+  },
+  {
+    "title": "Contemplation",
+    "category": "Paintings",
+    "description": "A vibrant expressive portrait.",
+    "image": "assets/art/art-02.jpeg"
+  },
+  {
+    "title": "Portrait in Graphite",
+    "category": "Sketches",
+    "description": "Graphite portrait study.",
+    "image": "assets/art/art-03.jpeg"
+  },
+  {
+    "title": "Blue Expression",
+    "category": "Paintings",
+    "description": "A colorful expressive figure study.",
+    "image": "assets/art/art-04.jpeg"
+  },
+  {
+    "title": "Classical Muse",
+    "category": "Paintings",
+    "description": "A richly colored classical-inspired figure.",
+    "image": "assets/art/art-05.jpeg"
+  },
+  {
+    "title": "Painted Stone — Together",
+    "category": "Paintings",
+    "description": "A miniature story painted on a stone.",
+    "image": "assets/art/art-06.jpeg"
+  },
+  {
+    "title": "Ganesha",
+    "category": "Paintings",
+    "description": "A bold, colorful devotional artwork.",
+    "image": "assets/art/art-07.jpeg"
+  },
+  {
+    "title": "Divine Portrait",
+    "category": "Paintings",
+    "description": "A detailed devotional portrait.",
+    "image": "assets/art/art-08.jpeg"
+  },
+  {
+    "title": "Radha & Krishna",
+    "category": "Paintings",
+    "description": "A symbolic portrait in contrasting colors.",
+    "image": "assets/art/art-09.jpeg"
+  },
+  {
+    "title": "Golden Landscape",
+    "category": "Paintings",
+    "description": "A bright landscape with sunflowers.",
+    "image": "assets/art/art-10.jpeg"
+  },
+  {
+    "title": "Garden House",
+    "category": "Paintings",
+    "description": "A colorful garden and cottage scene.",
+    "image": "assets/art/art-11.jpeg"
+  },
+  {
+    "title": "Sunset Sail",
+    "category": "Paintings",
+    "description": "A warm sunset over the water.",
+    "image": "assets/art/art-12.jpeg"
+  },
+  {
+    "title": "Krishna Keychain",
+    "category": "Crafts",
+    "description": "A hand-painted Krishna keychain.",
+    "image": "assets/art/art-13.jpeg"
+  },
+  {
+    "title": "Ganesha Keychain",
+    "category": "Crafts",
+    "description": "A hand-painted Ganesha keychain.",
+    "image": "assets/art/art-14.jpeg"
+  },
+  {
+    "title": "Portrait Study",
+    "category": "Sketches",
+    "description": "Graphite portrait study.",
+    "image": "assets/art/art-15.jpeg"
+  },
+  {
+    "title": "Portrait Study II",
+    "category": "Sketches",
+    "description": "Graphite portrait study.",
+    "image": "assets/art/art-16.jpeg"
+  },
+  {
+    "title": "Ram & Sita",
+    "category": "Sketches",
+    "description": "A detailed graphite composition.",
+    "image": "assets/art/art-17.jpeg"
+  }
+];
+    const grid = document.getElementById('gallery-grid');
+    const lightbox = document.getElementById('lightbox');
+    const lbImage = document.getElementById('lightbox-image');
+    const lbTitle = document.getElementById('lightbox-title');
+    const lbCategory = document.getElementById('lightbox-category');
+    const lbDescription = document.getElementById('lightbox-description');
+    let visible = artworks.slice();
+    let currentIndex = 0;
+
+    function render(filter = 'All') {
+      visible = filter === 'All' ? artworks.slice() : artworks.filter(a => a.category === filter);
+      grid.innerHTML = visible.map((a, i) => `
+        <button class="art-card ${i === 0 ? 'featured' : ''}" data-index="${i}" aria-label="Open ${a.title}">
+          <span class="card-image"><img src="${a.image}" alt="${a.title}" loading="lazy"></span>
+          <span class="card-info">
+            <span class="card-title">${a.title}</span>
+            <span class="card-category">${a.category}</span>
+          </span>
+        </button>
+      `).join('');
+      grid.querySelectorAll('.art-card').forEach(card => {
+        card.addEventListener('click', () => openLightbox(Number(card.dataset.index)));
+      });
+    }
+
+    function openLightbox(index) {
+      currentIndex = index;
+      const a = visible[currentIndex];
+      lbImage.src = a.image;
+      lbImage.alt = a.title;
+      lbTitle.textContent = a.title;
+      lbCategory.textContent = a.category;
+      lbDescription.textContent = a.description;
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('no-scroll');
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('no-scroll');
+    }
+
+    function move(delta) {
+      currentIndex = (currentIndex + delta + visible.length) % visible.length;
+      openLightbox(currentIndex);
+    }
+
+    document.querySelectorAll('.filter').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelector('.filter.active').classList.remove('active');
+        btn.classList.add('active');
+        render(btn.dataset.filter);
+      });
+    });
+
+    document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+    document.querySelector('.lightbox-prev').addEventListener('click', () => move(-1));
+    document.querySelector('.lightbox-next').addEventListener('click', () => move(1));
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') move(-1);
+      if (e.key === 'ArrowRight') move(1);
+    });
+
+    document.querySelector('.menu-toggle').addEventListener('click', () => {
+      document.querySelector('.nav').classList.toggle('open');
+    });
+    document.querySelectorAll('.nav a').forEach(a => a.addEventListener('click', () => {
+      document.querySelector('.nav').classList.remove('open');
+    }));
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+    render();
+  </script>
+</body>
+</html>
