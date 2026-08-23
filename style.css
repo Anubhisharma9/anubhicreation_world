@@ -173,3 +173,119 @@ footer{display:flex;justify-content:space-between;padding:25px 7vw;border-top:1p
     height: 65vh;
   }
 }
+/* =========================
+   ART SHOP
+   ========================= */
+
+.shop-section {
+  padding: 110px 7vw;
+  background: var(--paper);
+}
+
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 50px;
+}
+
+.shop-card {
+  background: var(--paper2);
+  border: 1px solid var(--line);
+  padding: 35px 30px;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.shop-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(54,42,29,.12);
+}
+
+.shop-icon {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.shop-card h3 {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.shop-card p {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: .85rem;
+  margin-bottom: 25px;
+}
+
+.shop-price {
+  margin-top: auto;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.shop-note {
+  margin-top: 40px;
+  padding: 25px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.shop-note strong {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.3rem;
+}
+
+.shop-note span {
+  color: var(--muted);
+  font-size: .82rem;
+}
+
+.shop-note a {
+  margin-left: auto;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 4px;
+  font-size: .75rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+@media (max-width: 850px) {
+  .shop-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 620px) {
+  .shop-section {
+    padding: 75px 6vw;
+  }
+
+  .shop-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .shop-note {
+    display: block;
+  }
+
+  .shop-note span {
+    display: block;
+    margin: 10px 0 20px;
+  }
+
+  .shop-note a {
+    display: inline-block;
+  }
+}

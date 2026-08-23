@@ -17,6 +17,7 @@
     <nav class="nav">
       <a href="#home">Home</a>
       <a href="#gallery">Gallery</a>
+      <a href="#shop">Art Shop</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -63,7 +64,64 @@
 
       <div id="gallery-grid" class="gallery-grid"></div>
     </section>
+    <section id="shop" class="shop-section">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">ART SHOP</p>
+      <h2>Take a piece<br>of my world home.</h2>
+    </div>
 
+    <p class="section-description">
+      Explore my artwork and handmade creations.
+      For availability and purchase enquiries, please get in touch.
+    </p>
+  </div>
+
+  <div class="shop-grid">
+
+    <div class="shop-card">
+      <div class="shop-icon">✏️</div>
+      <h3>Sketches</h3>
+      <p>Hand-drawn graphite and pencil sketches.</p>
+      <div class="shop-price">₹1,999</div>
+    </div>
+
+    <div class="shop-card">
+      <div class="shop-icon">🎨</div>
+      <h3>Paintings</h3>
+      <p>Original colorful paintings created by Anubhi.</p>
+      <div class="shop-price">₹999</div>
+    </div>
+
+    <div class="shop-card">
+      <div class="shop-icon">🪷</div>
+      <h3>Durga Maa Painting</h3>
+      <p>Devotional artwork featuring Maa Durga.</p>
+      <div class="shop-price">₹1,299</div>
+    </div>
+
+    <div class="shop-card">
+      <div class="shop-icon">🧿</div>
+      <h3>Keychains</h3>
+      <p>Hand-painted miniature keychain creations.</p>
+      <div class="shop-price">₹299</div>
+    </div>
+
+    <div class="shop-card">
+      <div class="shop-icon">🪨</div>
+      <h3>Stone Paintings</h3>
+      <p>Small stones transformed into unique artworks.</p>
+      <div class="shop-price">₹299</div>
+    </div>
+
+  </div>
+
+  <div class="shop-note">
+    <strong>Interested in an artwork?</strong>
+    <span>Contact Anubhi for availability and purchase details.</span>
+    <a href="mailto:anubhicreation@gmail.com">Contact via Email ↗</a>
+  </div>
+</section>
     <section id="about" class="about-section">
       <div class="about-image">
         <img src="assets/profile/anubhi.jpeg" alt="Anubhi">
@@ -361,6 +419,55 @@
 
   function getBotResponse(message) {
     const text = message.toLowerCase();
+        // ARTWORK PRICES
+
+    if (
+      text.includes("price") ||
+      text.includes("prices") ||
+      text.includes("cost") ||
+      text.includes("amount") ||
+      text.includes("rate") ||
+      text.includes("how much")
+    ) {
+
+      if (
+        text.includes("sketch") ||
+        text.includes("sketches")
+      ) {
+        return "Sketches are priced at ₹1,999. ✏️";
+      }
+
+      if (
+        text.includes("durga") ||
+        text.includes("durga maa")
+      ) {
+        return "The Durga Maa painting is priced at ₹1,299. 🪷";
+      }
+
+      if (
+        text.includes("keychain") ||
+        text.includes("keychains")
+      ) {
+        return "Hand-painted keychains are ₹299. 🧿";
+      }
+
+      if (
+        text.includes("stone") ||
+        text.includes("stone painting") ||
+        text.includes("stone paintings")
+      ) {
+        return "Stone paintings are ₹299. 🪨";
+      }
+
+      if (
+        text.includes("painting") ||
+        text.includes("paintings")
+      ) {
+        return "Paintings are priced at ₹999. 🎨";
+      }
+
+      return "Here are the current prices:\n\n✏️ Sketches — ₹1,999\n🎨 Paintings — ₹999\n🪷 Durga Maa Painting — ₹1,299\n🧿 Keychains — ₹299\n🪨 Stone Paintings — ₹299\n\nFor availability and purchase details, please contact Anubhi at anubhicreation@gmail.com.";
+    }
 
     if (
       text.includes("hello") ||
