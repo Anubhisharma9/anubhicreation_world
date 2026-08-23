@@ -151,6 +151,74 @@
       </div>
       <p class="small-note">Follow my creative work on Instagram or get in touch by email.</p>
     </section>
+    <!-- =========================
+     CUSTOMER REVIEWS
+     ========================= -->
+
+<section class="reviews-section" id="reviews">
+
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">CUSTOMER LOVE</p>
+      <h2>Reviews</h2>
+    </div>
+
+    <div class="review-summary">
+      <div class="average-rating" id="averageRating">0.0 ⭐</div>
+      <div id="reviewCount">0 reviews</div>
+    </div>
+  </div>
+
+  <div class="reviews-layout">
+
+    <!-- Existing reviews -->
+    <div class="reviews-list" id="reviewsList">
+      <p class="no-reviews">No reviews yet. Be the first to leave one! ✨</p>
+    </div>
+
+    <!-- Add review -->
+    <div class="review-form">
+
+      <h3>Share your experience</h3>
+
+      <label for="reviewName">Your Name</label>
+      <input
+        type="text"
+        id="reviewName"
+        placeholder="Enter your name"
+        maxlength="50"
+      >
+
+      <label>Your Rating</label>
+
+      <div class="star-rating" id="starRating">
+        <button type="button" data-rating="1">☆</button>
+        <button type="button" data-rating="2">☆</button>
+        <button type="button" data-rating="3">☆</button>
+        <button type="button" data-rating="4">☆</button>
+        <button type="button" data-rating="5">☆</button>
+      </div>
+
+      <label for="reviewText">Your Review</label>
+
+      <textarea
+        id="reviewText"
+        rows="5"
+        placeholder="Tell us about your experience..."
+        maxlength="500"
+      ></textarea>
+
+      <button type="button" class="button review-submit" id="submitReview">
+        Submit Review
+      </button>
+
+      <p id="reviewStatus" class="review-status"></p>
+
+    </div>
+
+  </div>
+
+</section>
   </main>
 
   <footer>
@@ -391,7 +459,17 @@
     </div>
   </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<script>
+  const SUPABASE_URL = "https://xgtteehlpbamwtpfzsgd.supabase.co/rest/v1/reviews";
+  const SUPABASE_KEY = "sb_publishable_Grq8YhLVkaIGRas4--KExg_bozBY4G0";
+
+  const supabaseClient = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+</script>
 <script>
   const chatbotButton = document.getElementById("chatbotButton");
   const chatbotWindow = document.getElementById("chatbotWindow");
@@ -554,6 +632,273 @@
       sendMessage();
     }
   });
+</script>
+<script>
+  let selectedRating = 0;
+
+  const reviewName = document.getElementById("reviewName");
+  const reviewText = document.getElementById("reviewText");
+  const submitReview = document.getElementById("submitReview");
+  const reviewStatus = document.getElementById("reviewStatus");
+  const reviewsList = document.getElementById("reviewsList");
+  const averageRating = document.getElementById("averageRating");
+  const reviewCount = document.getElementById("reviewCount");
+
+  const starButtons = document.querySelectorAll(
+    "#starRating button"
+  );
+
+  /* Select rating */
+
+  starButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      selectedRating = Number(button.dataset.rating);
+
+      starButtons.forEach(star => {
+
+        const rating = Number(star.dataset.rating);
+
+        star.textContent =
+          rating <= selectedRating ? "★" : "☆";
+
+      });
+
+    });
+
+  });
+
+
+  /* Load reviews */
+
+  async function loadReviews() {
+
+    try {
+
+      const response = await fetch(
+        `${SUPABASE_URL}/rest/v1/reviews?select=*&order=created_at.desc`,
+        {
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization": `Bearer ${SUPABASE_KEY}`
+          }
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Could not load reviews");
+      }
+
+      const reviews = await response.json();
+
+      displayReviews(reviews);
+
+    } catch (error) {
+
+      console.error("Review loading error:", error);
+
+    }
+
+  }
+
+
+  /* Display reviews */
+
+  function displayReviews(reviews) {
+
+    if (!reviews.length) {
+
+      reviewsList.innerHTML =
+        `<p class="no-reviews">
+          No reviews yet. Be the first to leave one! ✨
+        </p>`;
+
+      averageRating.textContent = "0.0 ⭐";
+      reviewCount.textContent = "0 reviews";
+
+      return;
+    }
+
+
+    const total = reviews.reduce(
+      (sum, review) => sum + Number(review.rating),
+      0
+    );
+
+    const average = total / reviews.length;
+
+    averageRating.textContent =
+      `${average.toFixed(1)} ⭐`;
+
+    reviewCount.textContent =
+      `${reviews.length} review${reviews.length === 1 ? "" : "s"}`;
+
+
+    reviewsList.innerHTML = reviews.map(review => {
+
+      const stars = "★".repeat(review.rating) +
+                    "☆".repeat(5 - review.rating);
+
+      return `
+        <div class="review-card">
+
+          <div class="review-card-header">
+
+            <span class="review-name">
+              ${escapeHtml(review.name)}
+            </span>
+
+            <span class="review-stars">
+              ${stars}
+            </span>
+
+          </div>
+
+          <p>
+            ${escapeHtml(review.review)}
+          </p>
+
+        </div>
+      `;
+
+    }).join("");
+
+  }
+
+
+  /* Submit review */
+
+  submitReview.addEventListener("click", async () => {
+
+    const name = reviewName.value.trim();
+    const review = reviewText.value.trim();
+
+
+    if (!name) {
+
+      reviewStatus.textContent =
+        "Please enter your name.";
+
+      return;
+
+    }
+
+
+    if (!selectedRating) {
+
+      reviewStatus.textContent =
+        "Please select a rating.";
+
+      return;
+
+    }
+
+
+    if (!review) {
+
+      reviewStatus.textContent =
+        "Please write a review.";
+
+      return;
+
+    }
+
+
+    submitReview.disabled = true;
+
+    reviewStatus.textContent =
+      "Submitting your review...";
+
+
+    try {
+
+      const response = await fetch(
+        `${SUPABASE_URL}/rest/v1/reviews`,
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json",
+            "apikey": SUPABASE_KEY,
+            "Authorization": `Bearer ${SUPABASE_KEY}`,
+            "Prefer": "return=minimal"
+          },
+
+          body: JSON.stringify({
+            name: name,
+            rating: selectedRating,
+            review: review
+          })
+        }
+      );
+
+
+      if (!response.ok) {
+
+        const errorText =
+          await response.text();
+
+        console.error(errorText);
+
+        throw new Error(
+          "Could not submit review"
+        );
+
+      }
+
+
+      reviewStatus.textContent =
+        "Thank you for your review! ❤️";
+
+
+      reviewName.value = "";
+      reviewText.value = "";
+      selectedRating = 0;
+
+
+      starButtons.forEach(star => {
+        star.textContent = "☆";
+      });
+
+
+      await loadReviews();
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      reviewStatus.textContent =
+        "Something went wrong. Please try again.";
+
+    } finally {
+
+      submitReview.disabled = false;
+
+    }
+
+  });
+
+
+  /* Basic HTML escaping */
+
+  function escapeHtml(value) {
+
+    return String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+
+  }
+
+
+  /* Load reviews when page opens */
+
+  loadReviews();
+
 </script>
 </body>
 </html>
