@@ -430,18 +430,22 @@ footer{display:flex;justify-content:space-between;padding:25px 7vw;border-top:1p
     margin-top: 25px;
   }
    
-   /* Logo in navbar */
+
+/* Fix AnubhiCreation World logo size */
 .site-header .brand {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    width: auto;
+    display: flex !important;
+    align-items: center !important;
+    width: 150px !important;
+    height: 65px !important;
+    flex-shrink: 0 !important;
 }
 
 .site-header .brand img {
-    width: 120px;
-    height: 60px;
-    object-fit: contain;
-    display: block;
+    width: 150px !important;
+    height: 65px !important;
+    max-width: 150px !important;
+    max-height: 65px !important;
+    object-fit: contain !important;
+    display: block !important;
 }
 }
