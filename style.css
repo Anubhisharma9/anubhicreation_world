@@ -434,35 +434,51 @@ footer{display:flex;justify-content:space-between;padding:25px 7vw;border-top:1p
 /* Fix AnubhiCreation World logo size */
 /* ===== HEADER LOGO FIX ===== */
 
+/* =========================
+   HEADER LOGO
+   ========================= */
+
 .site-header {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    height: 80px !important;
-    padding: 0 50px !important;
-    box-sizing: border-box !important;
-    overflow: hidden !important;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 12px 5vw;
+  height: 82px;
+
+  background: rgba(247, 243, 236, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(217, 208, 196, 0.7);
+
+  box-sizing: border-box;
 }
 
 .site-header .brand {
-    display: flex !important;
-    align-items: center !important;
-    width: 140px !important;
-    min-width: 140px !important;
-    max-width: 140px !important;
-    height: 70px !important;
-    flex: 0 0 140px !important;
-    overflow: hidden !important;
+  display: flex;
+  align-items: center;
+
+  width: 170px;
+  height: 65px;
+
+  flex-shrink: 0;
+
+  text-decoration: none;
 }
 
 .site-header .brand img {
-    display: block !important;
-    width: 140px !important;
-    min-width: 140px !important;
-    max-width: 140px !important;
-    height: 70px !important;
-    min-height: 0 !important;
-    max-height: 70px !important;
-    object-fit: contain !important;
+  display: block;
+
+  width: 170px;
+  height: 65px;
+
+  object-fit: contain;
+  object-position: center;
+
+  max-width: 100%;
+  max-height: 100%;
 }
 }
