@@ -432,20 +432,37 @@ footer{display:flex;justify-content:space-between;padding:25px 7vw;border-top:1p
    
 
 /* Fix AnubhiCreation World logo size */
+/* ===== HEADER LOGO FIX ===== */
+
+.site-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    height: 80px !important;
+    padding: 0 50px !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+}
+
 .site-header .brand {
     display: flex !important;
     align-items: center !important;
-    width: 150px !important;
-    height: 65px !important;
-    flex-shrink: 0 !important;
+    width: 140px !important;
+    min-width: 140px !important;
+    max-width: 140px !important;
+    height: 70px !important;
+    flex: 0 0 140px !important;
+    overflow: hidden !important;
 }
 
 .site-header .brand img {
-    width: 150px !important;
-    height: 65px !important;
-    max-width: 150px !important;
-    max-height: 65px !important;
-    object-fit: contain !important;
     display: block !important;
+    width: 140px !important;
+    min-width: 140px !important;
+    max-width: 140px !important;
+    height: 70px !important;
+    min-height: 0 !important;
+    max-height: 70px !important;
+    object-fit: contain !important;
 }
 }
