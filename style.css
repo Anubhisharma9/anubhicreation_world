@@ -430,15 +430,18 @@ footer{display:flex;justify-content:space-between;padding:25px 7vw;border-top:1p
     margin-top: 25px;
   }
    
-   .brand {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
+   /* Logo in navbar */
+.site-header .brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    width: auto;
 }
 
-.brand img {
-  width: 20px;
-  height: auto;
-  display: block;
+.site-header .brand img {
+    width: 120px;
+    height: 60px;
+    object-fit: contain;
+    display: block;
 }
 }
