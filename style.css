@@ -437,34 +437,42 @@ footer{display:flex;justify-content:space-between;padding:25px 7vw;border-top:1p
 /* =========================
    HEADER LOGO
    ========================= */
+/* =========================
+   HEADER
+========================= */
 
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 20;
+  z-index: 1000;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  padding: 12px 5vw;
   height: 82px;
+  padding: 8px 5vw;
 
-  background: rgba(247, 243, 236, 0.92);
+  background: rgba(247, 243, 236, 0.95);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(217, 208, 196, 0.7);
 
-  box-sizing: border-box;
+  border-bottom: 1px solid rgba(217, 208, 196, 0.7);
 }
+
+/* =========================
+   LOGO
+========================= */
 
 .site-header .brand {
   display: flex;
   align-items: center;
+  justify-content: center;
 
   width: 170px;
   height: 65px;
 
   flex-shrink: 0;
+  overflow: hidden;
 
   text-decoration: none;
 }
@@ -475,10 +483,33 @@ footer{display:flex;justify-content:space-between;padding:25px 7vw;border-top:1p
   width: 170px;
   height: 65px;
 
+  max-width: 100%;
+  max-height: 100%;
+
   object-fit: contain;
   object-position: center;
 
-  max-width: 100%;
-  max-height: 100%;
+  border: 0;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.site-header nav {
+  display: flex;
+  align-items: center;
+  gap: 38px;
+}
+
+.site-header nav a {
+  text-decoration: none;
+  color: #201d1a;
+
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  white-space: nowrap;
 }
 }
