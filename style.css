@@ -469,7 +469,7 @@ footer{display:flex;justify-content:space-between;padding:25px 7vw;border-top:1p
 }
 
 .brand img {
-    width: 180px;
+    width: 10px;
     height: auto;
     max-height: 60px;
     object-fit: contain;
