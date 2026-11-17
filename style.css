@@ -430,3 +430,31 @@ footer{display:flex;justify-content:space-between;padding:25px 7vw;border-top:1p
     margin-top: 25px;
   }
 }
+/* Small logo beside website name */
+.site-header .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.site-header .brand img {
+    width: 42px !important;
+    height: 42px !important;
+    max-width: 42px !important;
+    max-height: 42px !important;
+    object-fit: contain !important;
+    display: block !important;
+}
+
+.site-header .brand span {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 1.55rem;
+    color: var(--ink);
+    font-weight: 600;
+}
+
+.site-header .brand em {
+    font-style: italic;
+    font-weight: 400;
+}
