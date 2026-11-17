@@ -462,34 +462,18 @@ footer{display:flex;justify-content:space-between;padding:25px 7vw;border-top:1p
 /* =========================
    LOGO
 ========================= */
-
-.site-header .brand {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 170px;
-  height: 65px;
-
-  flex-shrink: 0;
-  overflow: hidden;
-
-  text-decoration: none;
+.brand {
+    display: flex;
+    align-items: center;
+    height: 70px;
 }
 
-.site-header .brand img {
-  display: block;
-
-  width: 170px;
-  height: 65px;
-
-  max-width: 100%;
-  max-height: 100%;
-
-  object-fit: contain;
-  object-position: center;
-
-  border: 0;
+.brand img {
+    width: 240px;
+    height: auto;
+    max-height: 60px;
+    object-fit: contain;
+    display: block;
 }
 
 /* =========================
